@@ -1,0 +1,39 @@
+<section class="popup">
+  <div class="items">
+    <div class="table-outer">
+      <div class="table">
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+        <app-table-item></app-table-item>
+      </div>
+    </div>
+    <div class="total">
+      <div class="caption">Total:</div>
+      <div class="value">{{ 100 | currency }}</div>
+    </div>
+  </div>
+  <div class="actions">
+    <button class="badge" [disabled]="true">
+      badge
+      <span class="balance">balance: {{99 | currency}}</span>
+    </button>
+    <button class="cash">
+      cash
+    </button>
+    <button class="top-up">
+      top up
+    </button>
+  </div>
+</section>

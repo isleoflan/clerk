@@ -1,0 +1,33 @@
+@use "~src/styles/abstracts/mixins" as *;
+:host{
+  position: relative;
+  &:before{
+    content: '';
+    inset: 0;
+    @include border-radius;
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+  }
+}
+article{
+  @include border-radius;
+  @include shadow;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: white;
+  transition: box-shadow ease-out 0.15s;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.8rem;
+  z-index: 1;
+}
+
+
+.active{
+  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.06);
+}

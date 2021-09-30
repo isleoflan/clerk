@@ -1,0 +1,11 @@
+<div class="product">
+  <span class="name">{{ name }}</span>
+  <span class="price">{{ 10 | currency }}</span>
+</div>
+
+<div class="controls">
+  <button type="button" class="decrease" (click)="decrease()">-</button>
+  <span class="qty">{{ qty }}</span>
+  <button type="button" class="increase" (click)="increase()">+</button>
+</div>
+
