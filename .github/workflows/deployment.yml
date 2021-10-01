@@ -1,0 +1,42 @@
+name: 'Clerk Continuous Integration'
+
+on:
+  # Triggers the workflow on push or pull request events for the master and develop branch
+
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    # Run the jop on ubuntu because we can
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # setup nodeJs for this container
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+
+      # freshly install the node dependencies
+      name: Install dependencies
+      - run: npm ci
+
+      # perform unit tests for the application
+      name: Testing the application...
+      - run: ng build --configuration=production
+
+      # deploy freshly built application to our server because this makes us happy.
+      name: Deploy application
+      - uses: easingthemes/ssh-deploy@main
+          env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            SOURCE: dist/
+            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+            REMOTE_USER: ${{ secrets.REMOTE_USER }}
+            TARGET: ${{ secrets.REMOTE_TARGET }}
