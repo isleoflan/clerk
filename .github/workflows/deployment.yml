@@ -2,8 +2,10 @@ name: 'Clerk Continuous Integration'
 
 on:
   # Triggers the workflow on push or pull request events for the master and develop branch
+
   push:
-    branches: [ master ]
+    branches:
+    - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,17 +25,19 @@ jobs:
           node-version: 16
 
       # freshly install the node dependencies
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
       # perform unit tests for the application
-      - run: ng build --configuration=production
+      - name: Testing the application...
+        run: ng build --configuration=production
 
       # deploy freshly built application to our server because this makes us happy.
-      name: Deploy application
-      - uses: easingthemes/ssh-deploy@main
-          env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            SOURCE: dist/
-            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-            REMOTE_USER: ${{ secrets.REMOTE_USER }}
-            TARGET: ${{ secrets.REMOTE_TARGET }}
+      - name: Deploy application
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: dist/
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
