@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PayPopupComponent } from './pay-popup.component';
+import {TableItemComponent} from './table-item/table-item.component';
 
 describe('PayPopupComponent', () => {
   let component: PayPopupComponent;
@@ -8,7 +9,7 @@ describe('PayPopupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PayPopupComponent ]
+      declarations: [ PayPopupComponent, TableItemComponent ],
     })
     .compileComponents();
   });

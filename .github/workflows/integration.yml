@@ -1,0 +1,40 @@
+name: 'Clerk Continous Integration'
+
+on:
+  # Triggers the workflow on push or pull request events for the master and develop branch
+  push:
+    branches:
+    - develop
+
+  pull_request:
+      branches:
+      - master
+      - develop
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # setup nodeJs for this container
+      - uses: actions/setup-node@master
+        with:
+          node-version: 16
+
+      # freshly install the node dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install AngularCLI
+        run: npm install -g @angular/cli
+
+      # perform unit tests for the application
+      - name: Testing the application...
+        run: ng test
