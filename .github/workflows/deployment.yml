@@ -2,7 +2,6 @@ name: 'Clerk Continuous Integration'
 
 on:
   # Triggers the workflow on push or pull request events for the master and develop branch
-
   push:
     branches: [ master ]
 
