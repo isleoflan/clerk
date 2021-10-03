@@ -33,7 +33,7 @@ jobs:
         run: npm ci
 
       - name: Install AngularCLI
-        run: npm install -g @anguar/cli
+        run: npm install -g @angular/cli
 
       # perform unit tests for the application
       - name: Testing the application...
