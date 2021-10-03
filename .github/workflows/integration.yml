@@ -25,9 +25,7 @@ jobs:
           node-version: 16
 
       # freshly install the node dependencies
-      name: Install dependencies
       - run: npm ci
 
       # perform unit tests for the application
-      name: Testing the application...
       - run: ng test
