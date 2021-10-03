@@ -33,7 +33,7 @@ jobs:
 
       # perform unit tests for the application
       - name: Testing the application...
-        run: ng build --configuration=production
+        run: ng build:prod
 
       # deploy freshly built application to our server because this makes us happy.
       - name: Deploy application

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CashierComponent } from './cashier.component';
+import {PayPopupModule} from './pay-popup/pay-popup.module';
+import {ProductsModule} from './products/products.module';
+import {SidebarModule} from './sidebar/sidebar.module';
 
 describe('CashierComponent', () => {
   let component: CashierComponent;
@@ -8,7 +11,14 @@ describe('CashierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CashierComponent ]
+      declarations: [
+        CashierComponent
+      ],
+      imports: [
+        ProductsModule,
+        SidebarModule,
+        PayPopupModule,
+      ]
     })
     .compileComponents();
   });
