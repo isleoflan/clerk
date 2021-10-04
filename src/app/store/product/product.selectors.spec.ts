@@ -1,15 +1,11 @@
-import {AppState} from '../app.state';
 import {ProductStoreReducer, ProductStoreSelectors} from './index';
 
-const initialState: AppState = {
-  product: ProductStoreReducer.initialState
-}
 
 describe('Product Selectors', () => {
 
   it('should select the feature state', () => {
-    const result = ProductStoreSelectors.selectProductState.projector(initialState.product);
-    expect(result).toEqual(initialState.product);
+    const result = ProductStoreSelectors.selectProductState.projector(ProductStoreReducer.initialState);
+    expect(result).toEqual(ProductStoreReducer.initialState);
 
     expect(result.isLoading).toBeFalse();
     expect(result.hasLoaded).toBeFalse();
