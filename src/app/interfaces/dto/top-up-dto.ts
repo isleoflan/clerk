@@ -1,4 +1,4 @@
 export interface TopUpDto {
-  badgeId: number,
+  badgeId: string,
   topUp: number
 }

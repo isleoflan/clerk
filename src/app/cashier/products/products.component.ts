@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductFacadeService} from '../../store/product/product-facade.service';
 
 @Component({
   selector: 'app-products',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  products$ = this.productFacadeService.products$;
+
+  constructor(
+    private productFacadeService: ProductFacadeService
+  ) { }
 
   ngOnInit(): void {
   }
