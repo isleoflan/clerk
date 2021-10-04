@@ -28,7 +28,7 @@ jobs:
 
       # freshly install the node dependencies
       - name: Install dependencies
-      run: npm ci
+        run: npm ci
 
       - name: Install AngularCLI
         run: npm install -g @angular/cli
