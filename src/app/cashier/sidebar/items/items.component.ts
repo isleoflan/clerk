@@ -15,7 +15,6 @@ export class ItemsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cart$.subscribe((data) => console.log(data));
   }
 
 }
