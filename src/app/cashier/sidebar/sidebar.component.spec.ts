@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {StoreModule} from '@ngrx/store';
+import {CartStoreReducer} from '../../store/cart';
+import {ProductStoreReducer} from '../../store/product';
 import {ItemComponent} from './items/item/item.component';
 import {ItemsComponent} from './items/items.component';
 
@@ -16,6 +19,12 @@ describe('SidebarComponent', () => {
         ItemsComponent,
         TotalComponent,
         ItemComponent,
+      ],
+      imports: [
+        StoreModule.forRoot({
+          product: ProductStoreReducer.reducer,
+          cart: CartStoreReducer.reducer
+        })
       ]
     })
     .compileComponents();

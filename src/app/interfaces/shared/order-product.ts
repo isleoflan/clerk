@@ -1,4 +1,4 @@
 export interface OrderProduct {
-  productId: string;
+  id: string;
   qty: number;
 }

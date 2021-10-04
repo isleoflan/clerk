@@ -4,13 +4,10 @@ import {createReducer, on } from '@ngrx/store';
 import {OrderProduct} from '../../interfaces/shared/order-product';
 import {addItem, decreaseQty, removeItem, increaseQty} from './cart.actions';
 
-const selectId = (orderProduct: OrderProduct): string => orderProduct.productId;
 
 export const cartFeatureKey = 'cart';
 
-export const cartEntityAdapter = createEntityAdapter<OrderProduct>({
-  selectId
-});
+export const cartEntityAdapter = createEntityAdapter<OrderProduct>();
 
 export interface State extends EntityState<OrderProduct>{}
 
@@ -19,14 +16,14 @@ export const initialState: State = cartEntityAdapter.getInitialState();
 
 export const reducer = createReducer(
   initialState,
-  on(addItem, (state: State, {productId}) => {
+  on(addItem, (state: State, {id}) => {
     const orderProduct: OrderProduct = {
-      productId,
+      id: id,
       qty: 0
     };
 
-    if (typeof state.entities[productId] !== 'undefined'){
-      orderProduct.qty = state.entities[productId]!.qty;
+    if (typeof state.entities[id] !== 'undefined'){
+      orderProduct.qty = state.entities[id]!.qty;
     }
     orderProduct.qty++;
 
@@ -35,17 +32,17 @@ export const reducer = createReducer(
     });
   }),
 
-  on(removeItem, (state: State, {productId}) => {
-    return cartEntityAdapter.removeOne(productId, {
+  on(removeItem, (state: State, {id}) => {
+    return cartEntityAdapter.removeOne(id, {
       ...state
     });
   }),
 
-  on(increaseQty, (state: State, {productId}) => {
+  on(increaseQty, (state: State, {id}) => {
     const update: UpdateStr<OrderProduct> = {
-      id: productId,
+      id,
       changes: {
-        qty: ++state.entities[productId]!.qty
+        qty: state.entities[id]!.qty + 1
       },
     }
 
@@ -53,11 +50,11 @@ export const reducer = createReducer(
       ...state
     });
   }),
-  on(decreaseQty, (state: State, {productId}) => {
+  on(decreaseQty, (state: State, {id}) => {
     const update: UpdateStr<OrderProduct> = {
-      id: productId,
+      id,
       changes: {
-        qty: --state.entities[productId]!.qty
+        qty: state.entities[id]!.qty -1
       },
     }
     return cartEntityAdapter.updateOne(update, {

@@ -1,11 +1,14 @@
-<div class="product">
-  <span class="name">{{ name }}</span>
-  <span class="price">{{ 10 | currency }}</span>
-</div>
+<ng-container *ngIf="item">
+  <div class="product">
+    <span class="name">{{ item.name }}</span>
+    <span class="price">{{ (item.price * item.qty) | currency }}</span>
+  </div>
 
-<div class="controls">
-  <button type="button" class="decrease" (click)="decrease()">-</button>
-  <span class="qty">{{ qty }}</span>
-  <button type="button" class="increase" (click)="increase()">+</button>
-</div>
+  <div class="controls">
+    <button type="button" class="decrease" (click)="decrease(item.id)">-</button>
+    <span class="qty">{{ item.qty }}</span>
+    <button type="button" class="increase" (click)="increase(item.id)">+</button>
+  </div>
+</ng-container>
+
 
