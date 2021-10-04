@@ -28,12 +28,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install AngularCLI
-        run: npm install -g @angular/cli
-
-      # perform unit tests for the application
-      - name: Testing the application...
-        run: npm build:prod
+      - name: Build Application
+        run: npm run build:prod
 
       # deploy freshly built application to our server because this makes us happy.
       - name: Deploy application
