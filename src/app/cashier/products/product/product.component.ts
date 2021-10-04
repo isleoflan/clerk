@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Product} from '../../../interfaces/payload/product';
 
 @Component({
   selector: 'app-product',
@@ -7,8 +8,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  title = 'Cola';
   isActive = false;
+
+  @Input() product: Product | null = null;
 
   constructor() { }
 
@@ -16,7 +18,6 @@ export class ProductComponent implements OnInit {
   }
 
   onMouseDown(): void{
-    console.log('here');
     this.isActive = true;
   }
 

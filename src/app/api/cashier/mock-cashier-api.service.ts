@@ -15,16 +15,16 @@ import * as faker from 'faker';
 })
 export class MockCashierApiService implements AbstractCashierApiService{
 
-  private products: Product[] = MockCashierApiService.createProducts()
-  private badge: Badge = MockCashierApiService.createBadge()
+  private products: Product[] = MockCashierApiService.createProducts();
+  private badge: Badge = MockCashierApiService.createBadge();
 
   constructor() {
     faker.setLocale('de_CH');
   }
 
-  private static createProducts(numberOfProducts: number = 10): Product[] {
+  private static createProducts(numberOfProducts: number = 20): Product[] {
     const products = [];
-    for (let i = 0; 1 < numberOfProducts; i++){
+    for (let i = 0; i < numberOfProducts; i++){
       const product: Product = {
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
@@ -38,11 +38,11 @@ export class MockCashierApiService implements AbstractCashierApiService{
   private static createBadge(): Badge {
     return {
       id: faker.datatype.number(),
-      balance: parseInt(faker.commerce.price(1000))
+      balance: 10000
     }
   }
 
-  getBadge(id: number): Observable<Payload<Badge>> {
+  getBadge(id: string): Observable<Payload<Badge>> {
     return of({
       data: this.badge
     }).pipe(delay(50));

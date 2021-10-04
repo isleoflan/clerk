@@ -3,6 +3,6 @@ import {OrderProduct} from '../shared/order-product';
 
 export interface OrderDto {
   type: OrderType;
-  badgeId?: number;
+  badgeId?: string;
   products: OrderProduct[];
 }

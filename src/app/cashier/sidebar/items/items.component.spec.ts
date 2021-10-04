@@ -9,10 +9,7 @@ describe('ItemsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemsComponent ],
-      imports: [
-        ItemComponent
-      ]
+      declarations: [ ItemsComponent, ItemComponent ],
     })
     .compileComponents();
   });

@@ -9,7 +9,7 @@ import {Product} from '../../interfaces/payload/product';
 
 export abstract class AbstractCashierApiService {
   public abstract getProducts(): Observable<Payload<Product[]>>;
-  public abstract getBadge(id: number): Observable<Payload<Badge>>;
+  public abstract getBadge(id: string): Observable<Payload<Badge>>;
 
   public abstract placeOrder(oderDto: OrderDto): Observable<Payload<OrderResponse>>;
 

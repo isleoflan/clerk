@@ -35,8 +35,8 @@ export class ProductFacadeService extends FacadeService{
 
   constructor(
     private store: Store<AppState>,
-    private cashierApiService: AbstractCashierApiService
+    private cashierApiService: AbstractCashierApiService,
   ) {
-    super()
+    super();
   }
 }
