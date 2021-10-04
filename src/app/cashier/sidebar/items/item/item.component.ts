@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {SidebarItem} from '../../../../interfaces/shared/sidebar-item';
+import {CartFacadeService} from '../../../../store/cart/cart-facade.service';
 
 @Component({
   selector: 'app-item',
@@ -7,19 +9,21 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() name: string = '';
+  @Input() item: SidebarItem | null = null;
 
   qty = 1;
 
-  constructor() { }
+  constructor(
+    private cartFacadeService: CartFacadeService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  increase(): void{
-    this.qty++;
+  increase(id: string): void{
+    this.cartFacadeService.increaseQty(id)
   }
-  decrease(): void{
-    this.qty--;
+  decrease(id: string): void{
+    this.cartFacadeService.decreaseQty(id)
   }
 }

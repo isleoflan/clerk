@@ -39,11 +39,11 @@ describe('MockCashierApiService', () => {
       badgeId: '123ASD',
       products: [
         {
-          productId: 'asdf',
+          id: 'asdf',
           qty: 1
         },
         {
-          productId: 'asdf1',
+          id: 'asdf1',
           qty: 1
         }
       ]

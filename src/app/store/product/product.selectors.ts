@@ -4,4 +4,4 @@ import {productEntityAdapter, productFeatureKey, State} from './product.reducer'
 
 
 export const selectProductState: MemoizedSelector<AppState, State> = createFeatureSelector(productFeatureKey);
-export const {selectAll} = productEntityAdapter.getSelectors(selectProductState);
+export const {selectAll, selectEntities} = productEntityAdapter.getSelectors(selectProductState);
