@@ -2,26 +2,12 @@
   <div class="items">
     <div class="table-outer">
       <div class="table">
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
-        <app-table-item></app-table-item>
+        <app-table-item *ngFor="let item of (cart$ | async)" [item]="item"></app-table-item>
       </div>
     </div>
     <div class="total">
       <div class="caption">Total:</div>
-      <div class="value">{{ 100 | currency }}</div>
+      <div class="value">{{ (total$ | async) | currency }}</div>
     </div>
   </div>
   <div class="actions">

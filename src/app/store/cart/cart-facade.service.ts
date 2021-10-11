@@ -9,6 +9,7 @@ import {CartStoreActions, CartStoreSelectors} from './index';
 export class CartFacadeService {
 
   cart$ = this.store.select(CartStoreSelectors.selectSidebarItems);
+  total$ = this.store.select(CartStoreSelectors.selectTotal);
 
   constructor(
     private store: Store<AppState>

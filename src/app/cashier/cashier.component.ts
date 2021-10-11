@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserInterfaceFacadeService} from '../store/user-interface/user-interface-facade.service';
 
 @Component({
   selector: 'app-cashier',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CashierComponent implements OnInit {
 
-  constructor() { }
+  isPaymentPopupVisible$ = this.userInterfaceFacadeService.isPaymentPopupVisible$;
+
+  constructor(
+    private userInterfaceFacadeService: UserInterfaceFacadeService
+  ) { }
 
   ngOnInit(): void {
   }

@@ -11,8 +11,6 @@ export class ItemComponent implements OnInit {
 
   @Input() item: SidebarItem | null = null;
 
-  qty = 1;
-
   constructor(
     private cartFacadeService: CartFacadeService
   ) { }

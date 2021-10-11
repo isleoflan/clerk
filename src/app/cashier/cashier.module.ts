@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {UserInterfaceStoreModule} from '../store/user-interface/user-interface-store.module';
 
 import { CashierRoutingModule } from './cashier-routing.module';
 import {CashierComponent} from './cashier.component';
@@ -18,6 +19,7 @@ import {SidebarModule} from './sidebar/sidebar.module';
     ProductsModule,
     SidebarModule,
     PayPopupModule,
+    UserInterfaceStoreModule
   ]
 })
 export class CashierModule { }

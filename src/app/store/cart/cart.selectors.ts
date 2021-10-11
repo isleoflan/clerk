@@ -15,6 +15,7 @@ export const selectSidebarItems: MemoizedSelector<AppState, SidebarItem[]> = cre
   (state: State, productEntities, orderProducts) => {
       return orderProducts
         .filter((orderProduct) => typeof productEntities[orderProduct.id] !== 'undefined')
+        .filter((orderProduct) => orderProduct.qty > 0)
         .map((orderProduct) => {
           return {
             id: orderProduct.id,
@@ -24,4 +25,16 @@ export const selectSidebarItems: MemoizedSelector<AppState, SidebarItem[]> = cre
           };
         })
   });
+
+export const selectTotal: MemoizedSelector<AppState, number> = createSelector(
+  selectCartState,
+  selectSidebarItems,
+  (state: State, sidebarItems: SidebarItem[]) => {
+    let total = 0;
+    sidebarItems.forEach((sidebarItem) => {
+      total += sidebarItem.qty * sidebarItem.price;
+    });
+    return total;
+  }
+);
 

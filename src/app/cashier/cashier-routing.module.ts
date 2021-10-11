@@ -5,7 +5,7 @@ import {CashierComponent} from './cashier.component';
 const routes: Routes = [
   {
     path: '',
-    component: CashierComponent
+    component: CashierComponent,
   }
 ];
 
