@@ -8,7 +8,7 @@ The application supports 2 different payment methods.
 2. Cash payment
 
 ### Badge payment
-For the badge payment the [isleoflan/payment-terminal]() is necessary,
+For the badge payment the [isleoflan/payment-terminal](https://github.com/isleoflan/payment-terminal) is necessary,
 so that the application can read the serial number of the badge.
 The badge is read out via a serial interface.
 
