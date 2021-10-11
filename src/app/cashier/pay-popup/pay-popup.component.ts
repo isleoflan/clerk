@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
+import {CartFacadeService} from '../../store/cart/cart-facade.service';
+import {UserInterfaceFacadeService} from '../../store/user-interface/user-interface-facade.service';
 
 @Component({
   selector: 'app-pay-popup',
   templateUrl: './pay-popup.component.html',
   styleUrls: ['./pay-popup.component.scss']
 })
-export class PayPopupComponent implements OnInit {
+export class PayPopupComponent {
 
-  constructor() { }
+  cart$ = this.cartFacadeService.cart$;
+  total$ = this.cartFacadeService.total$;
 
-  ngOnInit(): void {
+  constructor(
+    private userInterfaceFacadeService: UserInterfaceFacadeService,
+    private cartFacadeService: CartFacadeService
+  ) { }
+
+  @HostListener('document:keydown.escape')
+  onKeypress(): void{
+    this.userInterfaceFacadeService.hidePaymentPopup();
   }
 
 }

@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {CartFacadeService} from '../../../store/cart/cart-facade.service';
+import {UserInterfaceFacadeService} from '../../../store/user-interface/user-interface-facade.service';
 
 @Component({
   selector: 'app-total',
   templateUrl: './total.component.html',
   styleUrls: ['./total.component.scss']
 })
-export class TotalComponent implements OnInit {
+export class TotalComponent {
 
-  constructor() { }
+  total$ = this.cartFacadeService.total$;
 
-  ngOnInit(): void {
+  constructor(
+    private cartFacadeService: CartFacadeService,
+    private userInterfaceFacadeService: UserInterfaceFacadeService
+
+  ) { }
+
+  onClick(): void{
+    this.userInterfaceFacadeService.showPaymentPopup();
   }
 
 }

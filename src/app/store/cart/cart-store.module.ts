@@ -6,7 +6,7 @@ import {cartFeatureKey, reducer} from './cart.reducer';
 
 @NgModule({
   imports: [
-    StoreModule.forFeature(cartFeatureKey, reducer)
+    StoreModule.forFeature(cartFeatureKey, reducer),
   ]
 })
 export class CartStoreModule { }

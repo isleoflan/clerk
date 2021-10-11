@@ -1,3 +1,6 @@
-<span class="qty">{{2}}x</span>
-<span class="product">Coca Cola</span>
-<span class="price">{{2 | currency}}</span>
+<ng-container *ngIf="item">
+  <span class="qty">{{item.qty}}x</span>
+  <span class="product">{{item.name}}</span>
+  <span class="price">{{item.qty * item.price | currency}}</span>
+</ng-container>
+
