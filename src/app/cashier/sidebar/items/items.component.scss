@@ -10,7 +10,7 @@
 }
 .items{
   height: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 2.4rem;
   display: flex;
   flex-direction: column;
