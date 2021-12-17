@@ -6,6 +6,7 @@ import {MockCashierApiService} from './api/cashier/mock-cashier-api.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AppStoreModule} from './store/app-store.module';
+import {WebUsbService} from "./services/web-usb/web-usb.service";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {AppStoreModule} from './store/app-store.module';
     AppStoreModule
   ],
   providers: [
-    { provide: AbstractCashierApiService, useClass: MockCashierApiService }
+    { provide: AbstractCashierApiService, useClass: MockCashierApiService },
+    WebUsbService,
   ],
   bootstrap: [AppComponent]
 })
