@@ -134,7 +134,6 @@ export class WebUsbService {
   private textEncoder = new TextEncoder();
 
 
-
   private filters = [
     {'vendorId': 0x2341, 'productId': 0x8036}, // Arduino Leonardo
     {'vendorId': 0x2341, 'productId': 0x8037}, // Arduino Micro
@@ -153,7 +152,9 @@ export class WebUsbService {
 
 
   constructor() {
-    this.connect();
+   // setInterval(() => {
+      this.connect()
+    // }, 5000);
   }
 
 
@@ -185,6 +186,7 @@ export class WebUsbService {
   public requestPort() {
     this.usb.requestDevice({filters: this.filters}).then((device: Device) => {
       this.selectedDevice$.next(device);
+      this.connect();
     }).catch(() => {
       console.log('canceled Device Selection');
     });
