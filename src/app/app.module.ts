@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {AbstractCashierApiService} from './api/cashier/abstract-cashier-api.service';
+import {MockCashierApiService} from './api/cashier/mock-cashier-api.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {AppStoreModule} from './store/app-store.module';
 
 @NgModule({
   declarations: [
@@ -10,9 +13,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppStoreModule
   ],
-  providers: [],
+  providers: [
+    { provide: AbstractCashierApiService, useClass: MockCashierApiService }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

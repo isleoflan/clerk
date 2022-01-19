@@ -1,0 +1,2 @@
+<div class="total">{{ (total$ | async) | currency }}</div>
+<button type="button" [disabled]="!(total$ | async)" (click)="onClick()">PAY</button>

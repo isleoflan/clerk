@@ -1,0 +1,43 @@
+@use "~src/styles/abstracts/variables" as *;
+@use "~src/styles/abstracts/mixins" as *;
+
+:host{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 13.2rem;
+}
+.controls{
+  display: grid;
+  grid-template-columns: repeat(3, 3.6rem);
+  gap: 1.2rem;
+  border-radius: 1.2rem;
+  background-color: rgba($color-primary-dark, 0.3);
+  color: white;
+  overflow: hidden;
+  align-self: center;
+}
+.product{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+.price{
+  font-size: 1.1rem;
+  color: rgba(0,0,0,0.16);
+}
+.qty{
+  align-self: center;
+  justify-self: center;
+  font-size: 1.8rem;
+}
+
+button{
+  border: 0;
+  background-color: $color-primary-dark;
+  font-weight: 900;
+  letter-spacing: 0.1rem;
+  color: white;
+  aspect-ratio: 1 / 1;
+  font-size: 2.4rem;
+}

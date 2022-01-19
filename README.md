@@ -1,27 +1,27 @@
-# Clerk
+# Clerk (universal cashier application)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Functionality
+The application supports 2 different payment methods.
+1. Badge payment
+2. Cash payment
 
-## Code scaffolding
+### Badge payment
+For the badge payment the [isleoflan/payment-terminal](https://github.com/isleoflan/payment-terminal) is necessary,
+so that the application can read the serial number of the badge.
+The badge is read out via a serial interface.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Cash payment
+The application does not need any additional tools for cash payments.
 
-## Build
+## Usage
+The application should be installed on its own computer,
+which is only there for the cash register system.
+The login only works for users who are in the "chashier" group.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Steps
+1. Add the products to the "shopping cart".
+2. Click on PAY
+3. To activate the badge payment, hold the badge up to the terminal.
+4.If the badge has enough money, the purchase can be continued.
