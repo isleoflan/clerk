@@ -9,7 +9,7 @@ export class Device {
   public endpointOut: number | null = null;
 
 
-  public receive$: Subject<{ data: Uint8Array, status: string}> = new Subject<{ data: Uint8Array, status: string}>();
+  public receive$: Subject<USBInTransferResult> = new Subject<USBInTransferResult>();
 
   // @ts-ignore;
   private usb: Navigator.usb;
@@ -25,8 +25,8 @@ export class Device {
 
     const readLoop = () => {
       console.log('transferIn wait');
-      this.device.transferIn(this.endpointIn!, 64).then((result) => {
-        console.log(result);
+      this.device.transferIn(this.endpointIn!, 64).then((result: USBInTransferResult) => {
+        this.onReceive(result);
         readLoop();
       }).catch((error) => {
         console.log(error);
@@ -91,7 +91,7 @@ export class Device {
     return this.device.transferOut(this.endpointOut!, data);
   }
 
-  private onReceive(result: { data: Uint8Array, status: string}): void{
+  private onReceive(result: USBInTransferResult): void{
     console.log(result);
     this.receive$.next(result);
   }
@@ -153,13 +153,18 @@ export class WebUsbService {
 
     const selectedDevice = this.selectedDevice$.getValue();
 
-    selectedDevice?.receive$.subscribe((data) => console.log(data));
+    selectedDevice?.receive$.subscribe((data) => {
+      console.log(this.textDecoder.decode(data.data))
+    });
 
 
 
     selectedDevice?.connect().then(() => {
       console.log(selectedDevice);
-      selectedDevice?.send(this.textEncoder.encode('H'));
+      const message = `${'Total:'.padEnd(16, ' ')}${'CHF 50.00'.padEnd(16, ' ')}`;
+      console.log(message);
+
+      selectedDevice?.send(this.textEncoder.encode(message));
       console.log(selectedDevice);
       //selectedDevice?.send(this.textEncoder.encode('H'));
       //selectedDevice?.send(this.textEncoder.encode('H'));
