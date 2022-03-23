@@ -86,21 +86,7 @@ export class Device {
         this.device.close();
       })
   }
-/*
-  private readLoop() {
-    console.log(this.endpointIn);
-    console.log('readLoop');
-    this.device.transferIn(this.endpointIn!, 64)
-      .then((result) => {
-        this.onReceive(result);
-        console.log('in Then');
-        this.readLoop();
-      }).catch((error) => {
 
-        this.onReceiveError(error);
-    });
-  }
-*/
   public send(data: Uint8Array){
     return this.device.transferOut(this.endpointOut!, data);
   }
@@ -183,8 +169,8 @@ export class WebUsbService {
   }
 
   public requestPort() {
-    this.usb.requestDevice({filters: this.filters}).then((device: Device) => {
-      this.selectedDevice$.next(device);
+    this.usb.requestDevice({filters: this.filters}).then((device: USBDevice) => {
+      this.selectedDevice$.next(new Device(device));
       this.connect();
     }).catch(() => {
       console.log('canceled Device Selection');
