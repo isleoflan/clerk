@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from "rxjs";
-import { USBDevice } from "../../types/usb/usb";
 
 
 export class Device {

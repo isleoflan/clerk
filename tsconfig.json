@@ -19,7 +19,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/app/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -27,6 +35,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "types" : ["node"],
-    "typeRoots": [ "../node_modules/@types" ]
   }
 }
