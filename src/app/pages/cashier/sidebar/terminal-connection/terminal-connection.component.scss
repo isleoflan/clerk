@@ -1,6 +1,15 @@
 @use "~src/styles/abstracts/variables" as *;
 @use "~src/styles/abstracts/mixins" as *;
 
+@keyframes pulse {
+  from{
+    color: $color-primary-dark
+  }
+  to{
+    color: $color-primary-accent;
+  }
+}
+
 :host{
   background: white;
   @include border-radius;
@@ -9,9 +18,17 @@
   align-items: center;
   justify-content: center;
 }
+.terminal{
+  display: inline-block;
+  i{
+    display: block;
+    font-size: 1.7em;
+  }
+}
 
 .connected{
-  color: $color-primary-light;
+  color: $color-primary-dark;
+  animation: pulse 2s ease-in-out alternate infinite;
 }
 .no-connection{
   color: $color-primary-accent;
