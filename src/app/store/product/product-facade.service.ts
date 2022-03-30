@@ -33,6 +33,11 @@ export class ProductFacadeService extends FacadeService{
     this.store.select(ProductStoreSelectors.selectAll)
   );
 
+  productCategories$ = this.muteFirst(
+    this.requireProducts$.pipe(startWith(null)),
+    this.store.select(ProductStoreSelectors.selectProductsByCategories)
+  );
+
   constructor(
     private store: Store<AppState>,
     private cashierApiService: AbstractCashierApiService,

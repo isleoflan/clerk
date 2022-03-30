@@ -1,0 +1,6 @@
+<div class="terminal" [ngClass]="{'no-connection': !(isConnected$ | async), 'connected': (isConnected$ | async)}">
+  <i class="material-icons" *ngIf="(isConnected$ | async); else noConnection">usb</i>
+  <ng-template #noConnection>
+    <i class="material-icons" (click)="onSelectDevice()">usb_off</i>
+  </ng-template>
+</div>
