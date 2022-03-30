@@ -1,7 +1,7 @@
 import { Product } from "@/interfaces/payload/product";
 
 export interface ProductCategory {
-  id: string;
+  id: number;
   name: string;
   products: Product[];
 }

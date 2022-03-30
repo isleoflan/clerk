@@ -11,17 +11,18 @@ export const selectProductsByCategories: MemoizedSelector<AppState, ProductCateg
   selectProductState,
   selectAll,
   (state, products) => {
-    const productCategoriesMap: string[] = [];
+    const productCategoriesMap: number[] = [];
     const productCategories: ProductCategory[] = [];
 
     products.forEach((product) => {
-      const category = product.category || '';
-      if(productCategoriesMap.includes(category)){
-        const categoryIndex = productCategoriesMap.indexOf(category);
+      const categoryName = product.category || '';
+      const categoryId = product.categoryId || 0;
+      if(productCategoriesMap.includes(categoryId)){
+        const categoryIndex = productCategoriesMap.indexOf(categoryId);
         productCategories[categoryIndex].products.push(product);
       }else{
-        productCategories.push({id: category, name: category, products: [product]});
-        productCategoriesMap.push(category);
+        productCategories.push({id: categoryId, name: categoryName, products: [product]});
+        productCategoriesMap.push(categoryId);
       }
     });
 

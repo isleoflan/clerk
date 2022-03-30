@@ -3,5 +3,6 @@
          (mousedown)="onMouseDown()"
          (mouseup)="onMouseUp()"
          (click)="onClick(product.id)">
+  <img [src]="product.image" *ngIf="product.image" alt="">
   {{product.name}}
 </article>
