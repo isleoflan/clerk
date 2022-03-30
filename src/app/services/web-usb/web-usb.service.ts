@@ -62,12 +62,17 @@ export class WebUsbService {
     });
 
     await selectedDevice?.connect().then(() => {
+      this.defaultMessage();
       this.isConnected$.next(true);
     })
   }
 
   public sendMessage(message: string){
     this.selectedDevice$.getValue()?.send(message);
+  }
+
+  public defaultMessage() {
+    this.sendMessage(`${'Wilkommen an der'.padEnd(16, ' ')}IOL 2022`);
   }
 
   public requestPort() {

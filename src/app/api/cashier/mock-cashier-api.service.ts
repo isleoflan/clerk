@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {delay} from 'rxjs/operators';
-import {OrderDto} from '../../interfaces/dto/order-dto';
-import {TopUpDto} from '../../interfaces/dto/top-up-dto';
-import {Payload} from '../../interfaces/payload';
-import {Badge} from '../../interfaces/payload/badge';
-import {OrderResponse} from '../../interfaces/payload/order-response';
-import {Product} from '../../interfaces/payload/product';
+import {OrderDto} from '@/interfaces/dto/order-dto';
+import {TopUpDto} from '@/interfaces/dto/top-up-dto';
+import {Payload} from '@/interfaces/payload';
+import {Balance} from '@/interfaces/payload/balance';
+import {OrderResponse} from '@/interfaces/payload/order-response';
+import {Product} from '@/interfaces/payload/product';
 import {AbstractCashierApiService} from './abstract-cashier-api.service';
 import * as faker from 'faker';
 
@@ -16,7 +16,7 @@ import * as faker from 'faker';
 export class MockCashierApiService implements AbstractCashierApiService{
 
   private products: Product[] = MockCashierApiService.createProducts();
-  private badge: Badge = MockCashierApiService.createBadge();
+  private badge: Balance = MockCashierApiService.createBadge();
 
   constructor() {
     faker.setLocale('de_CH');
@@ -36,14 +36,13 @@ export class MockCashierApiService implements AbstractCashierApiService{
     return products;
   }
 
-  private static createBadge(): Badge {
+  private static createBadge(): Balance {
     return {
-      id: faker.datatype.number(),
       balance: 10000
     }
   }
 
-  getBadge(id: string): Observable<Payload<Badge>> {
+  getBalance(id: string): Observable<Payload<Balance>> {
     return of({
       data: this.badge
     }).pipe(delay(50));

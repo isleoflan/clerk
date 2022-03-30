@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="actions">
-    <button class="badge" [disabled]="false">
+    <button class="badge" [disabled]="false" (click)="onBadgeReady()">
       badge
       <span class="balance">balance: {{99 | intCurrency}}</span>
     </button>
