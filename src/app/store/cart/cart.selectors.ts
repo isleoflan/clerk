@@ -21,7 +21,7 @@ export const selectSidebarItems: MemoizedSelector<AppState, SidebarItem[]> = cre
             id: orderProduct.id,
             name: productEntities[orderProduct.id]!.name,
             price: productEntities[orderProduct.id]!.price,
-            qty: orderProduct.qty
+            qty: orderProduct.qty,
           };
         })
   });

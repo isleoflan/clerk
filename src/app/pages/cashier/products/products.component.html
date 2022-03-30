@@ -1,0 +1,6 @@
+<ng-container *ngFor="let category of (productCategories$ | async)">
+  <h2 *ngIf="category.name">{{ category.name }}</h2>
+  <section class="products">
+    <app-product *ngFor="let product of category.products" [product]="product"></app-product>
+  </section>
+</ng-container>

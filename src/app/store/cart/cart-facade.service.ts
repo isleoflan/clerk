@@ -8,6 +8,7 @@ import {CartStoreActions, CartStoreSelectors} from './index';
 })
 export class CartFacadeService {
 
+  orderProducts$ = this.store.select(CartStoreSelectors.selectAll);
   cart$ = this.store.select(CartStoreSelectors.selectSidebarItems);
   total$ = this.store.select(CartStoreSelectors.selectTotal);
 
@@ -28,5 +29,9 @@ export class CartFacadeService {
 
   decreaseQty(id: string): void{
     this.store.dispatch({type: CartStoreActions.decreaseQty.type, id});
+  }
+
+  reset(): void {
+    this.store.dispatch({type: CartStoreActions.reset.type});
   }
 }

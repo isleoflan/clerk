@@ -1,0 +1,19 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2.4rem 0;
+  gap: 2.4rem;
+}
+
+h2{
+  margin: 0;
+  font-size: 2em;
+}
+.products{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.4rem;
+
+  grid-auto-rows: min-content;
+}

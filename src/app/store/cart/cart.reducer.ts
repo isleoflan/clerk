@@ -2,7 +2,7 @@ import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {UpdateStr} from '@ngrx/entity/src/models';
 import {createReducer, on } from '@ngrx/store';
 import {OrderProduct} from '../../interfaces/shared/order-product';
-import {addItem, decreaseQty, removeItem, increaseQty} from './cart.actions';
+import { addItem, decreaseQty, removeItem, increaseQty, reset } from './cart.actions';
 
 
 export const cartFeatureKey = 'cart';
@@ -60,6 +60,11 @@ export const reducer = createReducer(
     return cartEntityAdapter.updateOne(update, {
       ...state
     });
+  }),
+  on(reset, () => {
+    return {
+      ...initialState,
+    }
   })
 );
 
