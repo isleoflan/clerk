@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  apiUrl: 'https://api.clerk.isleoflan.ch/v1',
+  iolAppToken: 'bcea23e8-5318-496a-9906-b66ccf6d4aab',
+
+  iolSsoRedirectUrl: 'http://localhost:4200/auth/'
 };
 
 /*

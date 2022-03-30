@@ -11,10 +11,13 @@ export class AppComponent {
   constructor(
     private webUsbService: WebUsbService
   ) {
-
   }
 
   selectDevice(){
     this.webUsbService.requestPort();
+  }
+
+  sendMessage(){
+    this.webUsbService.sendMessage('Hello World');
   }
 }

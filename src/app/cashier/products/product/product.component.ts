@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from '../../../interfaces/payload/product';
-import {CartFacadeService} from '../../../store/cart/cart-facade.service';
+import {Product} from '@/interfaces/payload/product';
+import {CartFacadeService} from '@/store/cart/cart-facade.service';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +14,7 @@ export class ProductComponent implements OnInit {
   @Input() product: Product | null = null;
 
   constructor(
-    private cartFacadeService: CartFacadeService
+    private cartFacadeService: CartFacadeService,
   ) { }
 
   ngOnInit(): void {
@@ -30,5 +30,4 @@ export class ProductComponent implements OnInit {
   onClick(id: string): void{
     this.cartFacadeService.addProductToCart(id);
   }
-
 }
