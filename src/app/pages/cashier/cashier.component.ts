@@ -1,7 +1,8 @@
+import { IntCurrencyPipe } from "@/pipes/int-currency.pipe";
 import { WebUsbService } from "@/services/web-usb/web-usb.service";
 import { CartFacadeService } from "@/store/cart/cart-facade.service";
 import { UserInterfaceFacadeService } from "@/store/user-interface/user-interface-facade.service";
-import { CurrencyPipe } from "@angular/common";
+import { formatNumber } from "@angular/common";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -17,13 +18,12 @@ export class CashierComponent implements OnInit {
     private userInterfaceFacadeService: UserInterfaceFacadeService,
     private cartFacadeService: CartFacadeService,
     private webUsbService: WebUsbService,
-
-    private currencyPipe: CurrencyPipe,
   ) { }
 
   ngOnInit(): void {
     this.cartFacadeService.total$.subscribe((total) => {
-      this.webUsbService.sendMessage(`${'Total:'.padEnd(16, ' ')}${(this.currencyPipe.transform(total) || '').padEnd(16, ' ')}`);
+      console.log(formatNumber(total / 100, 'de-CH', '1.2-2'));
+      this.webUsbService.sendMessage(`${'Total:'.padEnd(16, ' ')}${('CHF '+(total / 100).toFixed(2)).padEnd(16, ' ')}`);
     })
   }
 

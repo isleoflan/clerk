@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  products$ = this.productFacadeService.products$;
+  productCategories$ = this.productFacadeService.productCategories$;
 
   constructor(
     private productFacadeService: ProductFacadeService

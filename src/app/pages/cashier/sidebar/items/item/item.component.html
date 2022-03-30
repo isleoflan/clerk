@@ -1,7 +1,7 @@
 <ng-container *ngIf="item">
   <div class="product">
     <span class="name">{{ item.name }}</span>
-    <span class="price">{{ (item.price * item.qty) | currency }}</span>
+    <span class="price">{{ (item.price * item.qty) | intCurrency }}</span>
   </div>
 
   <div class="controls">

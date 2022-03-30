@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductFacadeService} from '../../store/product/product-facade.service';
+import {ProductFacadeService} from '@/store/product/product-facade.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['../../../../cashier/products/products.component.scss']
 })
 export class ProductsComponent implements OnInit {
 
-  products$ = this.productFacadeService.products$;
+  productCategories$ = this.productFacadeService.productCategories$;
 
   constructor(
     private productFacadeService: ProductFacadeService

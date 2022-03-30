@@ -1,3 +1,4 @@
+import { PipesModule } from "@/pipes/pipes.module";
 import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import {UserInterfaceStoreModule} from '@/store/user-interface/user-interface-store.module';
@@ -19,7 +20,8 @@ import {SidebarModule} from './sidebar/sidebar.module';
     ProductsModule,
     SidebarModule,
     PayPopupModule,
-    UserInterfaceStoreModule
+    UserInterfaceStoreModule,
+    PipesModule,
   ],
   providers: [CurrencyPipe],
 })

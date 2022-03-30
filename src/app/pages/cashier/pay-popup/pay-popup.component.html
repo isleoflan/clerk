@@ -7,16 +7,13 @@
     </div>
     <div class="total">
       <div class="caption">Total:</div>
-      <div class="value">{{ (total$ | async) | currency }}</div>
+      <div class="value">{{ (total$ | async) | intCurrency }}</div>
     </div>
   </div>
   <div class="actions">
     <button class="badge" [disabled]="false">
       badge
-      <span class="balance">balance: {{99 | currency}}</span>
-    </button>
-    <button class="cash">
-      cash
+      <span class="balance">balance: {{99 | intCurrency}}</span>
     </button>
     <button class="top-up">
       top up

@@ -28,7 +28,8 @@ export class MockCashierApiService implements AbstractCashierApiService{
       const product: Product = {
         id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
-        price: parseInt(faker.commerce.price(50, 10000))
+        price: parseInt(faker.commerce.price(50, 10000)),
+        category: 'TEST',
       }
       products.push(product);
     }

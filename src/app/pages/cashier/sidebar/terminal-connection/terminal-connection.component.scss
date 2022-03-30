@@ -1,0 +1,20 @@
+@use "~src/styles/abstracts/variables" as *;
+@use "~src/styles/abstracts/mixins" as *;
+
+:host{
+  background: white;
+  @include border-radius;
+  @include shadow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connected{
+  color: $color-primary-dark;
+}
+.no-connection{
+  color: $color-primary-accent;
+  cursor: pointer;
+}
+

@@ -1,3 +1,4 @@
+import { PipesModule } from "@/pipes/pipes.module";
 import { CartStoreModule } from "@/store/cart/cart-store.module";
 import { ProductStoreModule } from "@/store/product/product-store.module";
 import { UserInterfaceStoreModule } from "@/store/user-interface/user-interface-store.module";
@@ -7,6 +8,7 @@ import { SidebarComponent } from './sidebar.component';
 import { ItemsComponent } from './items/items.component';
 import { TotalComponent } from './total/total.component';
 import { ItemComponent } from './items/item/item.component';
+import { TerminalConnectionComponent } from './terminal-connection/terminal-connection.component';
 
 
 
@@ -15,7 +17,8 @@ import { ItemComponent } from './items/item/item.component';
     SidebarComponent,
     ItemsComponent,
     TotalComponent,
-    ItemComponent
+    ItemComponent,
+    TerminalConnectionComponent
   ],
   exports: [
     SidebarComponent
@@ -24,7 +27,8 @@ import { ItemComponent } from './items/item/item.component';
     CommonModule,
     ProductStoreModule,
     CartStoreModule,
-    UserInterfaceStoreModule
+    UserInterfaceStoreModule,
+    PipesModule
   ]
 })
 export class SidebarModule { }

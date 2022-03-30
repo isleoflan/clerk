@@ -10,11 +10,10 @@ import { BehaviorSubject, Subject } from "rxjs";
 export class WebUsbService {
 
   messages$: Subject<string> = new Subject<string>();
+  isConnected$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private connectedDevices$: BehaviorSubject<Device[]> = new BehaviorSubject<Device[]>([]);
   private selectedDevice$: BehaviorSubject<Device | null> = new BehaviorSubject<Device  | null>(null);
-
-  // public isConnected$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private usb = navigator.usb;
 
@@ -36,7 +35,15 @@ export class WebUsbService {
 
 
   constructor() {
-    this.connect()
+    this.connect();
+
+    this.usb.addEventListener('disconnect', () => {
+      this.isConnected$.next(false);
+    });
+
+    this.usb.addEventListener('connect', () => {
+      this.connect();
+    });
   }
 
 
@@ -54,7 +61,9 @@ export class WebUsbService {
       this.messages$.next(data);
     });
 
-    await selectedDevice?.connect();
+    await selectedDevice?.connect().then(() => {
+      this.isConnected$.next(true);
+    })
   }
 
   public sendMessage(message: string){
@@ -64,7 +73,7 @@ export class WebUsbService {
   public requestPort() {
     this.usb.requestDevice({filters: this.filters}).then((device: USBDevice) => {
       this.selectedDevice$.next(new Device(device));
-      this.connect();
+      this.connect()
     }).catch(() => {
       console.log('canceled Device Selection');
     });

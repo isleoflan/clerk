@@ -1,4 +1,4 @@
-import { Subject } from "rxjs";
+import { Subject, BehaviorSubject } from "rxjs";
 
 export class Device {
   public device: USBDevice;
