@@ -1,3 +1,8 @@
+<ng-container *ngIf="(total$ | async); else topUp">
+  <div class="total">{{ (total$ | async) | intCurrency }}</div>
+  <button type="button" (click)="onClick()">PAY</button>
+</ng-container>
 
-<div class="total">{{ (total$ | async) | intCurrency }}</div>
-<button type="button" [disabled]="!(total$ | async)" (click)="onClick()">PAY</button>
+<ng-template #topUp>
+  <button type="button" (click)="onClick()" class="topup">TopUp</button>
+</ng-template>

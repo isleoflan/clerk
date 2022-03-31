@@ -1,7 +1,7 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import {Product} from '../../interfaces/payload/product';
+import {Product} from '@/interfaces/payload/product';
 import {loadProducts, loadProductsCancel, loadProductsFailure, loadProductsSuccess} from './product.actions';
 
 
@@ -33,7 +33,7 @@ export const reducer = createReducer(
     }
   }),
   on(loadProductsSuccess, (state: State, {payload}) => {
-    return productEntityAdapter.addMany(payload.data, {
+    return productEntityAdapter.addMany(payload.data.products, {
       ...state,
       isLoading: false,
       hasLoaded: true,

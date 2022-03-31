@@ -5,18 +5,19 @@
         <app-table-item *ngFor="let item of (cart$ | async)" [item]="item"></app-table-item>
       </div>
     </div>
+    <form [formGroup]="topUpForm" class="top-up" [ngClass]="{'auto-inserted': autoInserted }">
+      <label for="amount" class="caption">TopUp:</label>
+      <input formControlName="amount" id="amount" min="0" step="1" type="number">
+    </form>
     <div class="total">
       <div class="caption">Total:</div>
       <div class="value">{{ (total$ | async) | intCurrency }}</div>
     </div>
   </div>
   <div class="actions">
-    <button class="badge" [disabled]="false" (click)="onBadgeReady()">
-      badge
-      <span class="balance">balance: {{99 | intCurrency}}</span>
-    </button>
-    <button class="top-up">
-      top up
+    <button class="badge" [disabled]="waitingOnBadge" (click)="onBadgeReady()">
+      PAY
+      <span class="balance" *ngIf="balance">Balance: {{balance | intCurrency}}</span>
     </button>
   </div>
 </section>

@@ -7,7 +7,7 @@ import {Product} from '@/interfaces/payload/product';
 
 
 export abstract class AbstractCashierApiService {
-  public abstract getProducts(): Observable<Payload<Product[]>>;
+  public abstract getProducts(): Observable<Payload<{products:Product[], topUp: string}>>;
   public abstract getBalance(badgeId: string): Observable<Payload<Balance>>;
 
   public abstract placeOrder(orderDto: OrderDto): Observable<Payload<OrderResponse>>;

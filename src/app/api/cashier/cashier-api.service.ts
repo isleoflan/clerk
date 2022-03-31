@@ -1,6 +1,5 @@
 import { AbstractCashierApiService } from "@/api/cashier/abstract-cashier-api.service";
 import { OrderDto } from "@/interfaces/dto/order-dto";
-import { TopUpDto } from "@/interfaces/dto/top-up-dto";
 import { Payload } from "@/interfaces/payload";
 import { Balance } from "@/interfaces/payload/balance";
 import { OrderResponse } from "@/interfaces/payload/order-response";
@@ -22,8 +21,8 @@ export class CashierApiService implements AbstractCashierApiService{
     return this.http.get<Payload<Balance>>('/balance', { params: { badgeId}}).pipe(first());
   }
 
-  getProducts(): Observable<Payload<Product[]>> {
-    return this.http.get<Payload<Product[]>>('/products').pipe(first());
+  getProducts(): Observable<Payload<{products:Product[], topUp: string}>> {
+    return this.http.get<Payload<{products:Product[], topUp: string}>>('/products').pipe(first());
   }
 
   placeOrder(orderDto: OrderDto): Observable<Payload<OrderResponse>> {

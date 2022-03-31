@@ -20,13 +20,19 @@
 button{
   border: 0;
   @include border-radius;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  background-color: $color-primary-accent;
+  background-color: $color-primary-dark;
   font-weight: 900;
   letter-spacing: 0.1rem;
   color: white;
   cursor: pointer;
+  grid-area: 1 / 1 / span 1 / span 2;
+
+  &:not(.topup){
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    background-color: $color-primary-accent;
+    grid-area: initial;
+  }
 
   &[disabled]{
     background-color: rgba($color-primary-accent, 0.3);

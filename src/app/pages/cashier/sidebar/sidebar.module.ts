@@ -18,7 +18,7 @@ import { TerminalConnectionComponent } from './terminal-connection/terminal-conn
     ItemsComponent,
     TotalComponent,
     ItemComponent,
-    TerminalConnectionComponent
+    TerminalConnectionComponent,
   ],
   exports: [
     SidebarComponent

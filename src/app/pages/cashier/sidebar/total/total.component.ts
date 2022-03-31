@@ -1,7 +1,6 @@
 import { CartFacadeService } from "@/store/cart/cart-facade.service";
 import { UserInterfaceFacadeService } from "@/store/user-interface/user-interface-facade.service";
 import { Component } from '@angular/core';
-import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-total',
@@ -19,11 +18,7 @@ export class TotalComponent {
   ) { }
 
   onClick(): void{
-    this.total$.pipe(first()).subscribe((total) => {
-      if (total > 0){
-        this.userInterfaceFacadeService.showPaymentPopup();
-      }
-    })
+      this.userInterfaceFacadeService.showPaymentPopup();
   }
 
 }

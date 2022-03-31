@@ -1,7 +1,7 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
-import {Payload} from '../../interfaces/payload';
-import {Product} from '../../interfaces/payload/product';
+import {Payload} from '@/interfaces/payload';
+import {Product} from '@/interfaces/payload/product';
 
 export const loadProducts = createAction(
   '[Product] Load Products'
@@ -9,7 +9,7 @@ export const loadProducts = createAction(
 
 export const loadProductsSuccess = createAction(
   '[Product] Load Products Success',
-  props<{ payload: Payload<Product[]> }>()
+  props<{ payload: Payload<{products: Product[], topUpId: string}> }>()
 );
 
 export const loadProductsFailure = createAction(

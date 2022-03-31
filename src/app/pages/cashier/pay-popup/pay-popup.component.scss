@@ -8,7 +8,7 @@
   inset: 0;
   background: rgba(0,0,0,0.16);
   display: grid;
-  grid-template: auto minmax(400px, 70vh) auto/auto minmax(400px, 60vw) auto;
+  grid-template: auto minmax(400px, 70vh) auto / auto minmax(400px, 60vw) auto;
   grid-template-areas:
     ". . ."
     ". content ."
@@ -27,7 +27,7 @@
 }
 .items{
   display: grid;
-  grid-template-rows: auto 6rem;
+  grid-template-rows: auto 6rem 6rem;
   height: 100%;
   overflow: hidden;
 }
@@ -44,6 +44,43 @@
   }
 
 }
+.top-up{
+  border-top: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.4rem;
+  letter-spacing: 0.1rem;
+  padding: 0 0 0 2.4rem;
+
+  &.auto-inserted{
+    input{
+      background-color: $color-primary-light;
+      color: white;
+    }
+  }
+
+  input{
+    align-self: stretch;
+    padding: 0 2.4rem;
+    text-align: right;
+    border: none;
+    outline: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(0,0,0,0.02);
+    line-height: 1;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+}
 .total{
   background-color: rgba(0,0,0,0.1);
   padding: 0 2.4rem;
@@ -59,7 +96,7 @@
 }
 .actions{
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 button{
@@ -89,7 +126,4 @@ button{
   color: rgba(255,255,255, 0.8);
   text-transform: none;
 }
-.top-up{
-  background-color: $color-primary-dark;
-  color: white;
-}
+

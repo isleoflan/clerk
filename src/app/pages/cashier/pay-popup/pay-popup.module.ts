@@ -2,6 +2,7 @@ import { PipesModule } from "@/pipes/pipes.module";
 import { UserInterfaceStoreModule } from "@/store/user-interface/user-interface-store.module";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {PayPopupComponent} from './pay-popup.component';
 import { TableItemComponent } from './table-item/table-item.component';
 
@@ -18,7 +19,9 @@ import { TableItemComponent } from './table-item/table-item.component';
   imports: [
     CommonModule,
     UserInterfaceStoreModule,
-    PipesModule
+    PipesModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PayPopupModule { }
