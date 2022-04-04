@@ -84,6 +84,19 @@ export class PayPopupComponent implements OnInit, OnDestroy {
     this.webUsbService.sendMessage('Badge vor leser halten');
 
     this.webUsbService.messages$.pipe(
+      finalize(() => {
+        if(this.waitingOnBadge){
+          this.waitingOnBadge = false;
+          this.cartFacadeService.total$.pipe(first()).subscribe((total) => {
+            if (total === 0) {
+              this.webUsbService.defaultMessage();
+            } else {
+              this.webUsbService.sendMessage(`${ 'Total:'.padEnd(16, ' ') }${ ('CHF ' + (total / 100).toFixed(2)).padEnd(16, ' ') }`);
+            }
+          });
+        }
+      }),
+      takeUntil(this.destroyed$),
       take(1),
       tap((badgeId) => {
         this.webUsbService.sendMessage(`${ 'Guthaben wird'.padEnd(16, ' ') }abgefragt...`);
