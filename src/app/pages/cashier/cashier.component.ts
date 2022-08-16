@@ -1,8 +1,9 @@
 import { AbstractCashierApiService } from "@/api/cashier/abstract-cashier-api.service";
+import { BarcodeScannerService } from "@/services/web-usb/barcode-scanner.service";
 import { WebUsbService } from "@/services/web-usb/web-usb.service";
 import { CartFacadeService } from "@/store/cart/cart-facade.service";
 import { UserInterfaceFacadeService } from "@/store/user-interface/user-interface-facade.service";
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { withLatestFrom } from "rxjs";
 import { filter, first } from "rxjs/operators";
 
@@ -19,6 +20,7 @@ export class CashierComponent implements OnInit {
     private userInterfaceFacadeService: UserInterfaceFacadeService,
     private cartFacadeService: CartFacadeService,
     private webUsbService: WebUsbService,
+    private barcodeScanner: BarcodeScannerService,
     private cashierApiService: AbstractCashierApiService
   ) {
   }
@@ -31,6 +33,8 @@ export class CashierComponent implements OnInit {
         this.webUsbService.sendMessage(`${ 'Total:'.padEnd(16, ' ') }${ ('CHF ' + (total / 100).toFixed(2)).padEnd(16, ' ') }`);
       }
     });
+
+    this.barcodeScanner.messages$.subscribe((message) =>console.log(message));
 
     this.webUsbService.messages$.pipe(
       withLatestFrom(this.userInterfaceFacadeService.isPaymentPopupVisible$),
