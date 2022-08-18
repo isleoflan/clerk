@@ -5,4 +5,5 @@ export interface Product {
   image?: string;
   category?: string;
   categoryId?: number;
+  gtin?: string;
 }

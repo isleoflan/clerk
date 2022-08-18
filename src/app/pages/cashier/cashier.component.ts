@@ -2,6 +2,7 @@ import { AbstractCashierApiService } from "@/api/cashier/abstract-cashier-api.se
 import { BarcodeScannerService } from "@/services/web-usb/barcode-scanner.service";
 import { WebUsbService } from "@/services/web-usb/web-usb.service";
 import { CartFacadeService } from "@/store/cart/cart-facade.service";
+import { ProductFacadeService } from "@/store/product/product-facade.service";
 import { UserInterfaceFacadeService } from "@/store/user-interface/user-interface-facade.service";
 import { Component, OnInit, HostListener } from '@angular/core';
 import { withLatestFrom } from "rxjs";
@@ -19,6 +20,7 @@ export class CashierComponent implements OnInit {
   constructor(
     private userInterfaceFacadeService: UserInterfaceFacadeService,
     private cartFacadeService: CartFacadeService,
+    private productFacadeService: ProductFacadeService,
     private webUsbService: WebUsbService,
     private barcodeScanner: BarcodeScannerService,
     private cashierApiService: AbstractCashierApiService
@@ -34,7 +36,16 @@ export class CashierComponent implements OnInit {
       }
     });
 
-    this.barcodeScanner.messages$.subscribe((message) =>console.log(message));
+    this.barcodeScanner.messages$.pipe(
+      withLatestFrom(this.userInterfaceFacadeService.isPaymentPopupVisible$),
+      filter(([_, isPopupVisible]) => !isPopupVisible)
+    ).subscribe(([gtin]) => {
+      this.productFacadeService.getProductByGtin$(gtin).pipe(first()).subscribe((product) => {
+        if(product){
+          this.cartFacadeService.addProductToCart(product.id, 1);
+        }
+      })
+    });
 
     this.webUsbService.messages$.pipe(
       withLatestFrom(this.userInterfaceFacadeService.isPaymentPopupVisible$),

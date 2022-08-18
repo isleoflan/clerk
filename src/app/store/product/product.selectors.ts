@@ -1,3 +1,4 @@
+import { Product } from "@/interfaces/payload/product";
 import { ProductCategory } from "@/interfaces/payload/product-category";
 import { createFeatureSelector, MemoizedSelector, createSelector } from '@ngrx/store';
 import {AppState} from '../app.state';
@@ -29,3 +30,11 @@ export const selectProductsByCategories: MemoizedSelector<AppState, ProductCateg
     return productCategories;
   }
 )
+
+export const selectProductByGtin = (gtin: string) => createSelector(
+  selectProductState,
+  selectAll,
+  (state, products) => {
+    return products.find((product) => product.gtin === gtin) || null;
+  }
+);

@@ -22,6 +22,7 @@ export class CartFacadeService {
   addProductToCart(id: string, qty: number = 0): void{
     this.store.dispatch({type: CartStoreActions.addItem.type, id, qty});
   }
+
   removeProductFromCart(id: string): void{
     this.store.dispatch({type: CartStoreActions.removeItem.type, id});
   }

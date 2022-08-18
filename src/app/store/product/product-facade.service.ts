@@ -18,9 +18,12 @@ export class ProductFacadeService extends FacadeService {
     filter(({isLoading, hasLoaded, error}) => !isLoading && !hasLoaded && error === null),
     tap(() => this.store.dispatch({type: ProductStoreActions.loadProducts.type})),
     switchMap(() => this.cashierApiService.getProducts().pipe(
-      tap((payload) =>
-        this.store.dispatch({type: ProductStoreActions.loadProductsSuccess.type, payload})
-      ),
+      tap((payload) => {
+          payload.data.products[2].gtin = '4006677001209';
+          payload.data.products[3].gtin = '003855116900280960020000';
+
+          this.store.dispatch({type: ProductStoreActions.loadProductsSuccess.type, payload})
+      }),
       tap((payload) =>
         this.store.dispatch({type: CartStoreActions.setTopUpId.type, id: payload.data.topUp})
       ),
@@ -40,6 +43,11 @@ export class ProductFacadeService extends FacadeService {
   productCategories$ = this.muteFirst(
     this.requireProducts$.pipe(startWith(null)),
     this.store.select(ProductStoreSelectors.selectProductsByCategories)
+  );
+
+  getProductByGtin$ = (gtin: string) => this.muteFirst(
+    this.requireProducts$.pipe(startWith(null)),
+    this.store.select(ProductStoreSelectors.selectProductByGtin(gtin))
   );
 
   constructor(
